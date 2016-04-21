@@ -5,7 +5,6 @@
 .org 0x800A847C
     j       file_creation_logic
 
-    /*testing
 ;v0 = save file offset
 .org 0x80134DC0
     file_creation_logic:
@@ -19,8 +18,8 @@
     sb      a0, @items_offs(a1)
     jr      ra
     nop
-*/
 
+    /*testing
 ;v0 = save file offset
 .org 0x80134DC0
     file_creation_logic:
@@ -43,3 +42,5 @@
     sb      t5, 0x000F(a1)
     jr      ra
     nop
+
+    */

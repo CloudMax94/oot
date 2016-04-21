@@ -4,6 +4,11 @@
 ;Allows you to place the inventory cursor on empty slots
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;TODO
+;
+;Stop the cursor from flashing yellow when moving to the L/R button from empty slots
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Free Navigation
@@ -59,6 +64,28 @@
     nop
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Skip equip logic on 0xFF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[skip_equip_logic]: 0x803D935C     ;0x803D9360
+.org 0x803D9104
+;t2 = item ID
+    addiu   t9, zero, 0x00FF
+    beq     t2, t9, @skip_equip_logic
+    nop
+    ;Optomized code below
+    ;Likely slots were removed by branching to one instruction earlier
+    bne     t8, r0, @skip_equip_logic
+    lhu     t9, 0x01D4(s1)
+    addiu   at, r0, 0x0006
+    bne     t9, at, @skip_equip_logic
+    lhu     t2, 0x01E4(s1)
+    lw      t3, 0x00B8(sp)
+    bne     t2, r0, @skip_equip_logic
+    lhu     v1, 0x0020(t3)
+    andi    t4, v1, 0x0007
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Hide Item 0xFF name (loop)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;This is the global check for all menu panels
@@ -68,7 +95,8 @@
 .org 0x803E1370
     slti    at, t7, 0x00FF          ;Set at to 1 if you don't have item 0xFF or a blank slot selected
 .org 0x803E1378
-    beql    at, zero, 0x803E17E8    ;Branch if you have item 0xFF or a blank slot selected
+    beql    at, zero, 0x803E20B0    ;Branch past the rendering if you have item 0xFF or a blank slot selected
+    lw      t6, 0x0108(sp)          ;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Hide item name on 0xFF (select)
@@ -82,46 +110,3 @@
     lhu     v1, 0x002A(sp)          ;Already there, no clue what it does, and I don't care
     slti    at, a1, 0x00FF          ;Set at to 1 if the item is 0xFF or a blank slot
     beql    at, zero, 0x803E2338    ;Branch if you have item 0xFF or a blank slot selected
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;Skip equip logic on 0xFF
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[equip_skip_branch]: 0x803d935C     ;0x803d9360
-.org 0x803D9104
-    ;t2 = item ID
-    addiu   t9, zero, 0x00FF
-    beq     t2, t9, @equip_skip_branch
-    nop
-    ;Optomized code below
-    ;Likely slots could be removed by branching to one instruction earlier
-    bne     t8, r0, @equip_skip_branch
-    lhu     t9, 0x01D4(s1)
-    addiu   at, r0, 0x0006
-    bne     t9, at, @equip_skip_branch
-    lhu     t2, 0x01E4(s1)
-    lw      t3, 0x00B8(sp)
-    bne     t2, r0, @equip_skip_branch
-    lhu     v1, 0x0020(t3)
-    andi    t4, v1, 0x0007
-    /*
-    beq     t4, r0, @equip_skip_branch
-    nop
-    */
-
-    /*
-    bnel    t8, r0, 0x803d9360
-    lh      t4, 0x009e (sp)
-    lhu     t9, 0x01d4 (s1)
-    addiu   at, r0, 0x0006
-    bnel    t9, at, 0x803d9360
-    lh      t4, 0x009e (sp)
-    lhu     t2, 0x01e4 (s1)
-    lw      t3, 0x00b8 (sp)
-    bnel    t2, r0, 0x803d9360
-    lh      t4, 0x009e (sp)
-    lhu     v1, 0x0020 (t3)
-    andi    t4, v1, 0x0007
-    beql    t4, r0, 0x803d9360
-    lh      t4, 0x009e (sp)
-    */
