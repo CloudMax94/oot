@@ -8,6 +8,8 @@
 ;TODO
 ;
 ;Stop the cursor from flashing yellow when moving to the L/R button from empty slots
+;Fix so that "(<)(v)(>) to Equip" do not appear for 1 frame when moving cursor
+;from the L/R buttons to an inventory slot.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -89,14 +91,21 @@
 ;Hide Item 0xFF name (loop)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;This is the global check for all menu panels
-;Other panels use 0x03E7 for empty slots
-;We only show IDs below 0xFF to cover both
+;
+;We branch to the end of the routine if the selected item isn't an ID below 0xFF
+;We make up space for two additional instructions by changing two branches to
+;arrive one instruction earlier, removing the need for their likely slots.
 
-.org 0x803E1370
+.org 0x803E1364
+;Optimized code
+    bne     a0, t8, 0x803E17E4      ;
+    lhu     t7, 0x023C(t0)
+    addiu   at, r0, 0x03E7
+    lui     t6, 0x8016
+    beq     t7, at, 0x803E17E4      ;
+;New Branch
     slti    at, t7, 0x00FF          ;Set at to 1 if you don't have item 0xFF or a blank slot selected
-.org 0x803E1378
-    beql    at, zero, 0x803E20B0    ;Branch past the rendering if you have item 0xFF or a blank slot selected
-    lw      t6, 0x0108(sp)          ;
+    beq     at, zero, 0x803E20AC    ;Branch past the rendering if you have item 0xFF selected
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Hide item name on 0xFF (select)
