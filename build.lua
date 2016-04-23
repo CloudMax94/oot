@@ -1,5 +1,4 @@
-package.path = package.path..";./?/init.lua"
-local lips = require "lips"
+local lips = require "lips.init"
 
 function make_rom_writer()
     local buff = {}
