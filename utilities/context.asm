@@ -1,14 +1,47 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;
+;GLOBAL CONTEXT
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+[global_context]:           0x80212020
+
+;;;;;;;;;;;;;;;;;;;;;;;;
+;INTERFACE CONTEXT
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+[interface_context]:        0x0104F0    ;Interface context offset in global context (0x80222510)
+;0x0000 - 0x01EF
+[ctxt_a_text]:              0x01F0      ;A Button Text
+;0x01F2 - 0x01F7
+[ctxt_navi_state]:          0x01F8      ;State determining if the navi button is visible
+[ctxt_b_state]:             0x01FA      ;State determining if it should display an icon or text
+;0x01FC - 0x0243
+[ctxt_black_overlay_alpha]: 0x0244      ;Black Screen Overlay Alpha
+[ctxt_a_alpha]:             0x0246      ;A Button Alpha
+[ctxt_b_alpha]:             0x0248      ;B Button Alpha
+[ctxt_c_left_alpha]:        0x024A      ;C Left Button Alpha
+[ctxt_c_down_alpha]:        0x024C      ;C Down Button Alpha
+[ctxt_c_right_alpha]:       0x024E      ;C Right Button Alpha
+[ctxt_hearts_alpha]:        0x0250      ;Hearts Alpha
+[ctxt_magic_rupee_alpha]:   0x0252      ;Magic & Rupees
+;0x0254 changes when opening/closing menu...
+[ctxt_s_alpha]:             0x0256      ;Start Button ALpha
+;0x0258 - 0x026F
+
+;;;;;;;;;;;;;;;;;;;;;;;;
 ;SUBSCREEN CONTEXT
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
 [subscreen_context]:        0x010760    ;Subscreen context offset in global context (0x80222780)
+;0x0000 - 0x01D3
 [ctxt_subscreen_state]:     0x01D4      ;Subscreen State
 [ctxt_subscreen_dbg_state]: 0x01D6      ;Subscreen debug State (1 & 2 = Inventory Editor, 3 = Event Editor)
+;0x01D8-0x0143
 ;[ctxt_01E4]:                0x01E4      ;7 when equipping equipment, 1 when changing panel, 3 when equipping item, also changes when playing songs...
 ;[ctxt_01E6]:                0x01E6      ;???
 [ctxt_subscreen_panel]:     0x01E8      ;Current Subscreen Panel
+;0x01EA-0x0207
 [ctxt_subscreen_alpha]:     0x0208      ;Subscreen Alpha
+;0x020A-0x0217
 ;Slot
 [ctxt_inv_slot]:            0x0218      ;Current Inventory Slot
 ;[ctxt_021A]:                0x021A      ;??? (Slot for some panel that doesn't exist?)
@@ -61,8 +94,6 @@
 ;World Map
 [ctxt_map_dots]:            0x0266      ;Table ends at 0x0271 (0x00 = hidden, 0x01 = visible, 0x02 = blinking)
 ;[ctxt_0272]:                0x0272      ;Alignment?
-;[ctxt_0274]:                0x0274      ;
-;[ctxt_0276]:                0x0276      ;
-;[ctxt_0278]:                0x0278      ;
+;0x0274-0x279
 [ctxt_map_marker]:          0x027A      ;Marker position for where you are supposed to go
 ;[ctxt_027B]:                0x027B      ;Undefined? (0xABAB)
