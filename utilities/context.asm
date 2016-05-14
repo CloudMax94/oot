@@ -4,6 +4,21 @@
 
 [global_context]:           0x80212020
 
+[ctxt_buttons_state]:       0x0014      ;Button states
+[ctxt_stick_state]:         0x0016      ;Stick state
+;0x18-0x19 unused?
+[ctxt_buttons_prev]:        0x001A      ;Button states from previous frame/cycle
+[ctxt_stick_prev]:          0x001C      ;Stick state from previous frame/cycle
+;0x1E-0x1F unused?
+[ctxt_buttons_on_down]:     0x0020      ;Button on Down (the frame/cycle a button is activated)
+[ctxt_stick_diff]:          0x0022      ;Stick difference between previous and current state
+;0x24-0x25 unused?
+[ctxt_buttons_on_up]:       0x0026      ;Button on Up (the frame/cycle a button is deactivated)
+[ctxt_stick_square]:        0x0028      ;A variant of the stick state in a square space. (holding towards a corner will max out both X & Y values)
+;0x29-0x2A unused?
+;0x2B-0xA3
+[ctxt_scene]:               0x00A4      ;The ID of the scene you're currently in
+
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;INTERFACE CONTEXT
 ;;;;;;;;;;;;;;;;;;;;;;;;
