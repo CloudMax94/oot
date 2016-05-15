@@ -37,8 +37,8 @@
 [ctxt_c_down_alpha]:        0x024C      ;C Down Button Alpha
 [ctxt_c_right_alpha]:       0x024E      ;C Right Button Alpha
 [ctxt_hearts_alpha]:        0x0250      ;Hearts Alpha
-[ctxt_magic_rupee_alpha]:   0x0252      ;Magic & Rupees
-;0x0254 changes when opening/closing menu...
+[ctxt_magic_rupee_alpha]:   0x0252      ;Magic & Rupees Alpha
+[ctxt_minimap_alpha]:       0x0254      ;Minimap Alpha
 [ctxt_s_alpha]:             0x0256      ;Start Button ALpha
 ;0x0258 - 0x026F
 
