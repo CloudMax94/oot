@@ -24,9 +24,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
 [interface_context]:        0x0104F0    ;Interface context offset in global context (0x80222510)
-;0x0000 - 0x01EF
+;0x0000 - 0x012F
+[ctxt_parameter_static]:    0x0130      ;Address to parameter_static in RAM
+[ctxt_do_action_textures]:  0x0134      ;Address to the do_action_static textures loaded for the A, B & Start buttons
+[ctxt_icon_item_textures]:  0x0138      ;Address to the icon_item_static textures loaded for the B & C buttons
+[ctxt_minimap_texture]:     0x013C      ;Address to the minimap texture
+;0x0140 - 0x01EF
 [ctxt_a_text]:              0x01F0      ;A Button Text
-;0x01F2 - 0x01F7
+;0x01F2 - 0x01F3
+[ctxt_a_rotation]:          0x01F4      ;A Button Rotation
 [ctxt_navi_state]:          0x01F8      ;State determining if the navi button is visible
 [ctxt_b_state]:             0x01FA      ;State determining if it should display an icon or text
 ;0x01FC - 0x0243
