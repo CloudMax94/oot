@@ -22,7 +22,8 @@
 ;MESSAGE TEXTURE CONTEXT(?)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[message_texture_context]:  0x2200      ;Dialog context offset in global context (0x80214220)
+[ctxt_message_texture]:     0x2200      ;Message texture context offset in global context (0x80214220)
+[message_texture_context]:  0x2200      ;deprecated (will probably change this to 0x80214220 at some point)
 
 [ctxt_dialog_msg_offset]:   0x0000      ;Offset of the current message in message_data_static
 [ctxt_dialog_msg_length]:   0x0004      ;Length of the current message in message_data_static
@@ -43,7 +44,8 @@
 ;INTERFACE CONTEXT
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[interface_context]:        0x0104F0    ;Interface context offset in global context (0x80222510)
+[ctxt_interface]:           0x0104F0    ;Interface context offset in global context (0x80222510)
+[interface_context]:        0x0104F0    ;deprecated (will probably change this to 0x80222510 at some point)
 ;0x0000 - 0x012F
 [ctxt_parameter_static]:    0x0130      ;Address to parameter_static in RAM
 [ctxt_do_action_textures]:  0x0134      ;Address to the do_action_static textures loaded for the A, B & Start buttons
@@ -72,7 +74,8 @@
 ;SUBSCREEN CONTEXT
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[subscreen_context]:        0x010760    ;Subscreen context offset in global context (0x80222780)
+[ctxt_subscreen]:           0x010760    ;Subscreen context offset in global context (0x80222780)
+[subscreen_context]:        0x010760    ;deprecated (will probably change this to 0x80222780 at some point)
 ;0x0000 - 0x01D3
 [ctxt_subscreen_state]:     0x01D4      ;Subscreen State
 [ctxt_subscreen_dbg_state]: 0x01D6      ;Subscreen debug State (1 & 2 = Inventory Editor, 3 = Event Editor)
