@@ -1,6 +1,6 @@
-;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;GLOBAL CONTEXT
-;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [global_context]:           0x80212020
 
@@ -15,13 +15,33 @@
 ;0x24-0x25 unused?
 [ctxt_buttons_on_up]:       0x0026      ;Button on Up (the frame/cycle a button is deactivated)
 [ctxt_stick_square]:        0x0028      ;A variant of the stick state in a square space. (holding towards a corner will max out both X & Y values)
-;0x29-0x2A unused?
-;0x2B-0xA3
+;0x2A-0xA3 unused?
 [ctxt_scene]:               0x00A4      ;The ID of the scene you're currently in
 
-;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;MESSAGE TEXTURE CONTEXT(?)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[message_texture_context]:  0x2200      ;Dialog context offset in global context (0x80214220)
+
+[ctxt_dialog_msg_offset]:   0x0000      ;Offset of the current message in message_data_static
+[ctxt_dialog_msg_length]:   0x0004      ;Length of the current message in message_data_static
+[ctxt_dialog_msg_textures]: 0x0008      ;0x3C00 length? (0x80 per character)
+[ctxt_dialog_btn_texture]:  0x3C08      ;Tringle, Square or Arrow texture
+
+[ctxt_fs_digit_textures]:   0x3C88      ;Font digits 0 through 9
+[ctxt_fs_uletter_textures]: 0x4188      ;Font letters A through Z
+[ctxt_fs_lletter_textures]: 0x4E88      ;Font letters a through z
+[ctxt_fs_space_texture]:    0x5B88      ;Font space
+[ctxt_fs_hyphen_texture]:   0x5C08      ;Font chracter hyphen-minus
+[ctxt_fs_period_texture]:   0x5C88      ;Font chracter period
+[ctxt_fs_unk1]:             0x5D08      ;AB * 0x6858
+[ctxt_fs_msg_offset]:       0xC560      ;Offset of the file select message in message_data_static
+[ctxt_fs_msg_length]:       0xC564      ;Length of the file select message in message_data_static
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;INTERFACE CONTEXT
-;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [interface_context]:        0x0104F0    ;Interface context offset in global context (0x80222510)
 ;0x0000 - 0x012F
@@ -42,15 +62,15 @@
 [ctxt_c_left_alpha]:        0x024A      ;C Left Button Alpha
 [ctxt_c_down_alpha]:        0x024C      ;C Down Button Alpha
 [ctxt_c_right_alpha]:       0x024E      ;C Right Button Alpha
-[ctxt_hearts_alpha]:        0x0250      ;Hearts Alpha
-[ctxt_magic_rupee_alpha]:   0x0252      ;Magic & Rupees Alpha
+[ctxt_hearts_alpha]:        0x0250      ;Hearts and C Up Alpha
+[ctxt_magic_rupee_alpha]:   0x0252      ;Magic, Rupees & Small Key Alpha
 [ctxt_minimap_alpha]:       0x0254      ;Minimap Alpha
 [ctxt_s_alpha]:             0x0256      ;Start Button ALpha
 ;0x0258 - 0x026F
 
-;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;SUBSCREEN CONTEXT
-;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [subscreen_context]:        0x010760    ;Subscreen context offset in global context (0x80222780)
 ;0x0000 - 0x01D3
