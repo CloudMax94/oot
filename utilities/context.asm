@@ -1,21 +1,45 @@
+;For additional information on some addresses, visit http://wiki.cloudmodding.com/oot/Global_Context
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;GLOBAL CONTEXT
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [global_context]:           0x80212020
 
-[ctxt_buttons_state]:       0x0014      ;Button states
-[ctxt_stick_state]:         0x0016      ;Stick state
-;0x18-0x19 unused?
-[ctxt_buttons_prev]:        0x001A      ;Button states from previous frame/cycle
-[ctxt_stick_prev]:          0x001C      ;Stick state from previous frame/cycle
-;0x1E-0x1F unused?
-[ctxt_buttons_on_down]:     0x0020      ;Button on Down (the frame/cycle a button is activated)
-[ctxt_stick_diff]:          0x0022      ;Stick difference between previous and current state
-;0x24-0x25 unused?
-[ctxt_buttons_on_up]:       0x0026      ;Button on Up (the frame/cycle a button is deactivated)
-[ctxt_stick_square]:        0x0028      ;A variant of the stick state in a square space. (holding towards a corner will max out both X & Y values)
-;0x2A-0xA3 unused?
+[ctxt_gfx_context]:         0x0000      ;Graphics Context
+[ctxt_update_func]:         0x0004      ;Game states "update" function
+[ctxt_destruct_func]:       0x0008      ;Game states "Deconstructor" function
+[ctxt_construct_func]:      0x000C      ;Game states next "Constructor" function
+[ctxt_size]:                0x0010      ;Global context size, 0 after initialization
+
+;CONTROLLERS
+[ctxt_cont_1]:              0x0014
+[ctxt_cont_2]:              0x002C
+[ctxt_cont_3]:              0x0044
+[ctxt_cont_4]:              0x005C
+;CONTROLLER STATES
+[ctxt_cont_buttons_state]:  0x00        ;Button states
+[ctxt_cont_stick_state]:    0x02        ;Stick state
+;0x04-0x05 unused?
+[ctxt_cont_buttons_prev]:   0x06        ;Button states from previous frame/cycle
+[ctxt_cont_stick_prev]:     0x08        ;Stick state from previous frame/cycle
+;0x0A-0x0B unused?
+[ctxt_cont_buttons_on_down]:0x0C        ;Button on Down (the frame/cycle a button is activated)
+[ctxt_cont_stick_diff]:     0x0E        ;Stick difference between previous and current state
+;0x10-0x11 unused?
+[ctxt_cont_buttons_on_up]:  0x12        ;Button on Up (the frame/cycle a button is deactivated)
+[ctxt_cont_stick_square]:   0x14        ;A variant of the stick state in a square space. (holding towards a corner will max out both X & Y values)
+;0x10-0x11 unused?
+;DEPRECATED, use the constants above instead
+[ctxt_buttons_state]:       ctxt_cont_1+ctxt_cont_buttons_state
+[ctxt_stick_state]:         ctxt_cont_1+ctxt_cont_stick_state
+[ctxt_buttons_prev]:        ctxt_cont_1+ctxt_cont_buttons_prev
+[ctxt_stick_prev]:          ctxt_cont_1+ctxt_cont_stick_prev
+[ctxt_buttons_on_down]:     ctxt_cont_1+ctxt_cont_buttons_on_down
+[ctxt_stick_diff]:          ctxt_cont_1+ctxt_cont_stick_diff
+[ctxt_buttons_on_up]:       ctxt_cont_1+ctxt_cont_buttons_on_up
+[ctxt_stick_square]:        ctxt_cont_1+ctxt_cont_stick_square
+
 [ctxt_scene]:               0x00A4      ;The ID of the scene you're currently in
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
